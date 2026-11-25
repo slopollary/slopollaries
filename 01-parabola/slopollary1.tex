@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,tikz,xcolor,fancyvrb,hyperref}
+\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}[Scale=0.78]
+\newtheorem{theorem}{Slopollary}
+\theoremstyle{remark}\newtheorem*{remark}{Remark}
+\title{\textbf{Slopollary 1}\\[2pt]\large The squares of the zeta zeros lie on a parabola}
+\author{Maths Slop (@slopollary)}
+\date{25 November 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+The Riemann hypothesis is now a theorem (Alp\"oge, 20 November 2026, formally
+verified in Lean). We record a small geometric consequence: if you square the
+nontrivial zeros of $\zeta$, they all land on a single parabola whose focus is
+the origin and whose directrix is the critical line itself. Moreover, squaring a
+zero does not move its height.
+\end{abstract}
+
+\section*{Statement}
+Write $\rho$ for a nontrivial zero of the Riemann zeta function, and let
+\[
+  \mathcal{P}=\bigl\{\,w\in\mathbb{C} : |w| = \tfrac12-\operatorname{Re}w\,\bigr\}
+  =\bigl\{\,x+iy : x=\tfrac14-y^{2}\,\bigr\},
+\]
+the parabola with focus $0$ and directrix $\operatorname{Re}w=\tfrac12$.
+
+\begin{theorem}
+For every nontrivial zero $\rho$ of $\zeta$:
+\begin{enumerate}
+  \item $\rho^{2}\in\mathcal{P}$; that is, $\rho^2$ is exactly as far from the
+        origin as it is from the critical line;
+  \item $\operatorname{Im}(\rho^{2})=\operatorname{Im}(\rho)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By the Riemann hypothesis, $\rho=\tfrac12+i\gamma$ with $\gamma\in\mathbb{R}$. Then
+\[
+  \rho^{2}=\bigl(\tfrac14-\gamma^{2}\bigr)+i\gamma ,
+\]
+which gives (2) at once. For (1), $|\rho^{2}|=|\rho|^{2}=\tfrac14+\gamma^{2}
+=\tfrac12-\bigl(\tfrac14-\gamma^{2}\bigr)=\tfrac12-\operatorname{Re}(\rho^{2})$.
+\end{proof}
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[->,gray] (-11.8,0)--(0.9,0) node[below,black]{\small$\operatorname{Re}$};
+  \draw[->,gray] (0,-0.2)--(0,4.7) node[left,black]{\small$\operatorname{Im}$};
+  \foreach \x in {-1000,-750,-500,-250}
+    \draw[gray] (\x/100,0.06)--(\x/100,-0.06) node[below,black]{\scriptsize$\x$};
+  \foreach \y in {10,20,30}
+    \draw[gray] (0.06,\y/8)--(-0.06,\y/8) node[right=3pt,black]{\scriptsize$\y$};
+  \draw[thick,blue!70!black,domain=0:34,samples=120,variable=\t]
+    plot ({(0.25-\t*\t)/100},{\t/8});
+  \foreach \g in {14.1347,21.0220,25.0109,30.4249,32.9351}
+    \fill[red!80!black] ({(0.25-\g*\g)/100},{\g/8}) circle (2pt);
+  \node[blue!70!black] at (-7.2,4.0) {\small$\mathcal{P}$};
+  \node[red!80!black,anchor=north east] at (-2.1,1.65) {\scriptsize$\rho_1^{2}\approx-199.54+14.13\,i$};
+  \fill (0,0) circle (1.4pt) node[below left]{\scriptsize focus};
+\end{tikzpicture}
+
+\small The squares of the first five nontrivial zeros (upper half-plane), sitting on
+$\mathcal{P}$. Axes are not to the same scale.
+\end{center}
+
+\begin{remark}
+That $z\mapsto z^{2}$ sends a vertical line to a parabola with focus at the
+origin is classical. What is new is only that we may now say, without the word
+``conjecturally'', that the zeta zeros are on that line. The converse also
+holds: nontrivial zeros have $0<\operatorname{Re}\rho<1$, and
+$\rho^{2}\in\mathcal{P}$ forces $(\operatorname{Re}\rho)^{2}=\tfrac14$, so the
+statement ``all $\rho^{2}$ lie on $\mathcal{P}$'' is equivalent to the Riemann
+hypothesis. The converse is not part of the formalisation below.
+\end{remark}
+
+\section*{Formalisation (Lean 4 + Mathlib)}
+The statement is phrased against Mathlib's \texttt{RiemannHypothesis}, the same
+proposition established by Alp\"oge's library. The file below compiles without errors on \texttt{live.lean-lang.org} (25 November 2026); \texttt{\#print axioms parabola\_slopollary} reports only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+\VerbatimInput[frame=single,rulecolor=\color{gray!50}]{Slopollary1.lean}
+\end{document}
