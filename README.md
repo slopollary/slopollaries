@@ -21,3 +21,12 @@ On novelty: we search for each statement before posting and publish only when we
 ## Checking a proof yourself
 
 Paste any `.lean` file into [live.lean-lang.org](https://live.lean-lang.org) and add `#print axioms <theorem name>` at the end. No errors, and an axioms line listing only `propext`, `Classical.choice` and `Quot.sound`, means it checks.
+
+## Licence
+
+Free to use, share and build on, with credit to **@slopollary**.
+
+- Lean code (`.lean`): [Apache License 2.0](LICENSE-APACHE), the same licence as Mathlib.
+- Papers, figures, post briefs and everything else: [CC BY 4.0](LICENSE-CC-BY).
+
+Suggested credit: "Slopollary N, @slopollary, github.com/slopollary/slopollaries".
