@@ -11,11 +11,11 @@ This file is the single source of truth for posting about Slopollary 2 on X. Use
 - **Where the zeros go:** as the zeros climb the critical line, their c values approach the cusp 1/4. The angle of μ is 2·arctan(1/(2γ)).
 - **Depends on:** the Riemann hypothesis (Alpöge, released 20 Nov 2026, Lean-certified 21 Nov 2026).
 - **Lean status:** compiles on live.lean-lang.org (Lean 4.37.0-rc1, current Mathlib, 25 Nov 2026) with no errors or warnings, no `sorry`, axioms: `propext`, `Classical.choice`, `Quot.sound`. RH is taken as a hypothesis (`RiemannHypothesis`); we did not re-prove RH.
-- **Main theorem names:** `mandelbrot_cardioid_slopollary`, `neutral_fixed_point_slopollary`
+- **Main theorem names:** `mandelbrot_cardioid_slopollary`, `neutral_fixed_point_slopollary`, `mandelbrot_iff`
 - **Novelty:** we searched (about 14 queries across two passes) and could not find zeta zeros linked to the Mandelbrot cardioid. The ingredients are classical: |1 − 1/ρ| = 1 under RH is the fact behind Li's criterion, and the cardioid parametrisation is standard.
 - **Closest prior work:** Kawahira, "The Riemann hypothesis and holomorphic index in complex dynamics" (arXiv:1602.06843). It shows RH plus simple zeros is equivalent to every nontrivial zero being an indifferent fixed point of a map built from ζ. Same multiplier 1 − 1/ρ, but no quadratic maps and no Mandelbrot set.
 - **Depth:** mild. It is two classical facts composed. The packaging is the contribution. Say so if asked.
-- **Converse:** if ρ ≠ 0, Re ρ ≠ −1/2 and c is on the cardioid, then Re ρ = 1/2 (formalised as `re_half_of_on_cardioid`). So the statement is equivalent to RH, but that last step uses the critical strip 0 < Re ρ < 1 and is not formalised.
+- **Equivalence:** the statement is equivalent to RH, and this is formalised: `mandelbrot_iff` proves RH holds if and only if every nontrivial zero's c lies on the main cardioid. It uses Mathlib's result that the only zeros with Re ≤ 0 are the trivial ones.
 - **Relation to Slopollary 1:** 1/ρ² lies on a cardioid that is the inversion of Slopollary 1's parabola.
 - **Links:** https://github.com/slopollary/slopollaries/tree/main/02-mandelbrot
 
@@ -36,12 +36,12 @@ Images: `page-1.png` on post 1, `page-3.png` (Lean source with the main theorems
 
 3/ As the zeros climb the critical line, the points slide into the cusp at ¼. First zero: c ≈ 0.25125 + 0.00009i. Is this deep? No. It's Li's |1 − 1/ρ| = 1 plus the cardioid formula. We couldn't find the two put together anywhere.
 
-4/ Lean 4 + Mathlib: compiles, no sorry, standard axioms, RH taken as a hypothesis. Related work: Kawahira, arXiv:1602.06843. Code and paper: github.com/slopollary/slopollaries
+4/ Lean 4 + Mathlib: compiles, no sorry, standard axioms. Also proved in Lean: this statement is equivalent to RH. Related work: Kawahira, arXiv:1602.06843. Code and paper: github.com/slopollary/slopollaries
 
 ## Reply notes
 
 - "Isn't this trivial?" Mild, not deep. Two classical facts composed. That's the genre.
 - "Did you prove RH?" No. Alpöge did. We assume it, in Mathlib's own form.
 - "So zeta zeros are in the Mandelbrot set?" The points c built from the zeros lie on the boundary of the main cardioid, which is part of the set. The zeros themselves are not.
-- "Is it equivalent to RH?" Yes on paper, using the critical strip. The Lean file proves the pointwise converse with two side conditions.
+- "Is it equivalent to RH?" Yes, and the equivalence is proved in the Lean file (`mandelbrot_iff`).
 - "Someone already showed this." Thank them, ask for the source, and we will credit it in the repo.

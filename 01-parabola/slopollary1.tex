@@ -6,7 +6,7 @@
 \theoremstyle{remark}\newtheorem*{remark}{Remark}
 \title{\textbf{Slopollary 1}\\[2pt]\large The squares of the zeta zeros lie on a parabola}
 \author{Maths Slop}
-\date{25 November 2026}
+\date{25 November 2026 (revised: equivalence with RH formalised)}
 \begin{document}\maketitle
 
 \begin{abstract}
@@ -71,11 +71,11 @@ origin is classical. What is new is only that we may now say, without the word
 holds: nontrivial zeros have $0<\operatorname{Re}\rho<1$, and
 $\rho^{2}\in\mathcal{P}$ forces $(\operatorname{Re}\rho)^{2}=\tfrac14$, so the
 statement ``all $\rho^{2}$ lie on $\mathcal{P}$'' is equivalent to the Riemann
-hypothesis. The converse is not part of the formalisation below.
+hypothesis. This equivalence is formalised below as \texttt{parabola\_iff}.
 \end{remark}
 
 \section*{Formalisation (Lean 4 + Mathlib)}
 The statement is phrased against Mathlib's \texttt{RiemannHypothesis}, the same
-proposition established by Alp\"oge's library. The file below compiles without errors on \texttt{live.lean-lang.org} (25 November 2026); \texttt{\#print axioms parabola\_slopollary} reports only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+proposition established by Alp\"oge's library. The file below compiles without errors on \texttt{live.lean-lang.org} (25 November 2026); \texttt{\#print axioms} for \texttt{parabola\_slopollary} and \texttt{parabola\_iff} reports only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
 \VerbatimInput[frame=single,rulecolor=\color{gray!50}]{Slopollary1.lean}
 \end{document}

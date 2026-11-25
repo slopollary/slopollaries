@@ -6,7 +6,7 @@
 \theoremstyle{remark}\newtheorem*{remark}{Remarks}
 \title{\textbf{Slopollary 2}\\[2pt]\large Every zeta zero picks a point on the Mandelbrot set's main cardioid}
 \author{Maths Slop}
-\date{25 November 2026}
+\date{25 November 2026 (revised: equivalence with RH formalised)}
 \begin{document}\maketitle
 
 \begin{abstract}
@@ -91,11 +91,7 @@ also $1-1/\rho$, but no quadratic family or Mandelbrot set appears.
 $\mu_\rho=e^{i\theta}$ with $\theta=2\arctan\frac{1}{2\gamma}$, the angle under which
 $\rho$ sees the segment $[0,1]$. As $\gamma\to\infty$, $\theta\to0$ and $c_\rho\to\tfrac14$.
 
-(iii) \emph{Converse.} If $\rho\neq0$, $\operatorname{Re}\rho\neq-\tfrac12$ and
-$c_\rho$ lies on the cardioid, then $\operatorname{Re}\rho=\tfrac12$ (formalised
-below). Since nontrivial zeros have $0<\operatorname{Re}\rho<1$, the statement
-``every $c_\rho$ lies on the main cardioid'' is equivalent to the Riemann
-hypothesis; that last step uses the critical strip and is not formalised.
+(iii) \emph{Equivalence.} Conversely, if $\rho\neq0$, $\operatorname{Re}\rho\neq-\tfrac12$ and $c_\rho$ lies on the cardioid, then $\operatorname{Re}\rho=\tfrac12$. Nontrivial zeros have $\operatorname{Re}\rho>0$ (in Mathlib: the only zeros with $\operatorname{Re}\le0$ are the trivial ones), so the statement ``every $c_\rho$ lies on the main cardioid'' is equivalent to the Riemann hypothesis. This is formalised below as \texttt{mandelbrot\_iff}.
 
 (iv) \emph{Relation to Slopollary 1.} $1-4c_\rho=1/\rho^{2}$ lies on the cardioid
 $r=2(1+\cos\varphi)$, the inversion about its focus of the parabola of Slopollary 1.
@@ -106,6 +102,6 @@ The statement is phrased against Mathlib's \texttt{RiemannHypothesis}, taken as 
 hypothesis. The file below compiles without errors or warnings on
 \texttt{live.lean-lang.org} (Lean 4.37.0-rc1 with current Mathlib, 25 November 2026);
 \texttt{\#print axioms} reports only \texttt{propext}, \texttt{Classical.choice}
-and \texttt{Quot.sound} for all three main theorems.
+and \texttt{Quot.sound} for all four main theorems.
 \VerbatimInput[frame=single,rulecolor=\color{gray!50}]{Slopollary2.lean}
 \end{document}

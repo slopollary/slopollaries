@@ -10,10 +10,10 @@ This file is the single source of truth for posting about Slopollary 1 on X. Use
 - **Example:** the first zero has γ ≈ 14.1347, so ρ² ≈ −199.54 + 14.13i.
 - **Depends on:** the Riemann hypothesis (Alpöge, released 20 Nov 2026, Lean-certified 21 Nov 2026).
 - **Lean status:** compiles against Mathlib on live.lean-lang.org (25 Nov 2026), no `sorry`, axioms: `propext`, `Classical.choice`, `Quot.sound`. RH is taken as a hypothesis (`RiemannHypothesis`); we did not re-prove RH.
-- **Main theorem name:** `parabola_slopollary`
+- **Main theorem names:** `parabola_slopollary`, `parabola_iff`
 - **Novelty:** we searched and could not find this stated about zeta zeros. The underlying geometry (squaring a vertical line gives a parabola with focus at the origin) is classical.
 - **Depth:** shallow. Three lines of algebra once RH is known. Say so if asked.
-- **Converse:** true (the statement is equivalent to RH) but not formalised.
+- **Equivalence:** the statement is equivalent to RH, and this is formalised: `parabola_iff` proves RH holds if and only if every nontrivial zero's square lies on the parabola. It uses Mathlib's result that the only zeros with Re ≤ 0 are the trivial ones.
 - **Links:** https://github.com/slopollary/slopollaries/tree/main/01-parabola
 
 ## Must say / must not say
@@ -32,7 +32,7 @@ Images: paper page 1 on post 1, paper page 2 (Lean source) on post 4.
 
 3/ Is this deep? No. Squaring a vertical line gives a parabola; that's classical. What's new is saying it about zeta zeros without the word "conjecturally". We couldn't find it stated anywhere.
 
-4/ Lean 4 + Mathlib: compiles, no sorry, standard axioms, RH taken as a hypothesis. Code and paper: github.com/slopollary/slopollaries
+4/ Lean 4 + Mathlib: compiles, no sorry, standard axioms. Also proved in Lean: this statement is equivalent to RH. Code and paper: github.com/slopollary/slopollaries
 
 ## Reply notes
 
