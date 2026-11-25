@@ -16,7 +16,7 @@ On novelty: we search for each statement before posting and publish only when we
 
 | # | Date | Statement | Files |
 |---|------|-----------|-------|
-| 1 | 25 Nov 2026 | For every nontrivial zero ρ of ζ, the square ρ² lies on the parabola with focus 0 and directrix Re = ½, and Im(ρ²) = Im(ρ). | [paper](01-parabola/slopollary1.pdf) · [Lean](01-parabola/Slopollary1.lean) · [TeX](01-parabola/slopollary1.tex) |
+| 1 | 25 Nov 2026 | For every nontrivial zero ρ of ζ, the square ρ² lies on the parabola with focus 0 and directrix Re = ½, and Im(ρ²) = Im(ρ). | [paper](01-parabola/slopollary1.pdf) · [Lean](01-parabola/Slopollary1.lean) · [TeX](01-parabola/slopollary1.tex) · [post brief](01-parabola/POST.md) |
 
 ## Checking a proof yourself
 
