@@ -34,3 +34,34 @@ theorem parabola_slopollary (RH : RiemannHypothesis) (ρ : ℂ)
     ‖ρ ^ 2‖ = 1 / 2 - (ρ ^ 2).re ∧ (ρ ^ 2).im = ρ.im :=
   have h : ρ.re = 1 / 2 := RH ρ hζ htriv h1
   ⟨norm_sq_of_re_half ρ h, sq_im_of_re_half ρ h⟩
+
+/-- A nontrivial zero of ζ has positive real part (from Mathlib's description of the
+zeros in the closed left half-plane). -/
+theorem nontrivial_zero_re_pos {s : ℂ} (hζ : riemannZeta s = 0)
+    (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) : 0 < s.re := by
+  by_contra h
+  exact htriv ((riemannZeta_eq_zero_iff_of_re_nonpos (not_lt.mp h)).mp hζ)
+
+/-- Converse on the right half-plane: a point with positive real part whose square lies
+on the parabola has real part `1/2`. -/
+theorem re_half_of_on_parabola (ρ : ℂ) (hpos : 0 < ρ.re)
+    (h : ‖ρ ^ 2‖ = 1 / 2 - (ρ ^ 2).re) : ρ.re = 1 / 2 := by
+  rw [norm_pow, Complex.sq_norm, Complex.normSq_apply, sq, Complex.mul_re] at h
+  have h2 : (ρ.re - 1 / 2) * (ρ.re + 1 / 2) = 0 := by
+    linear_combination h / 2
+  rcases mul_eq_zero.mp h2 with h3 | h3 <;> linarith
+
+/-- **Equivalence.** The Riemann hypothesis holds if and only if the square of every
+nontrivial zero lies on the parabola with focus `0` and directrix `Re w = 1/2`. -/
+theorem parabola_iff :
+    RiemannHypothesis ↔
+      ∀ ρ : ℂ, riemannZeta ρ = 0 → (¬∃ n : ℕ, ρ = -2 * (n + 1)) → ρ ≠ 1 →
+        ‖ρ ^ 2‖ = 1 / 2 - (ρ ^ 2).re := by
+  constructor
+  · intro RH ρ hζ ht h1
+    exact (parabola_slopollary RH ρ hζ ht h1).1
+  · intro H ρ hζ ht h1
+    exact re_half_of_on_parabola ρ (nontrivial_zero_re_pos hζ ht) (H ρ hζ ht h1)
+
+#print axioms parabola_slopollary
+#print axioms parabola_iff

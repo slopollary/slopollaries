@@ -89,8 +89,37 @@ theorem re_half_of_on_cardioid (ρ : ℂ) (hρ : ρ ≠ 0) (hneg : ρ.re ≠ -1 
     simp only [Complex.add_re, Complex.add_im, Complex.one_re, Complex.one_im] at hs
     exact absurd (by nlinarith [hs]) hneg
 
+/-- A nontrivial zero of ζ has positive real part (from Mathlib's description of the
+zeros in the closed left half-plane). -/
+theorem nontrivial_zero_re_pos {s : ℂ} (hζ : riemannZeta s = 0)
+    (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) : 0 < s.re := by
+  by_contra h
+  exact htriv ((riemannZeta_eq_zero_iff_of_re_nonpos (not_lt.mp h)).mp hζ)
+
+/-- **Equivalence.** The Riemann hypothesis holds if and only if, for every nontrivial
+zero ρ, the parameter c = (1 - 1/ρ^2)/4 lies on the main cardioid. -/
+theorem mandelbrot_iff :
+    RiemannHypothesis ↔
+      ∀ ρ : ℂ, riemannZeta ρ = 0 → (¬∃ n : ℕ, ρ = -2 * (n + 1)) → ρ ≠ 1 →
+        ∃ μ : ℂ, ‖μ‖ = 1 ∧ (1 - 1 / ρ ^ 2) / 4 = μ / 2 - μ ^ 2 / 4 := by
+  constructor
+  · intro RH ρ hζ ht h1
+    exact mandelbrot_cardioid_slopollary RH ρ hζ ht h1
+  · intro H ρ hζ ht h1
+    obtain ⟨μ, hμ, hc⟩ := H ρ hζ ht h1
+    have hpos : 0 < ρ.re := nontrivial_zero_re_pos hζ ht
+    have hρ : ρ ≠ 0 := by
+      intro h0
+      rw [h0] at hpos
+      simp at hpos
+    have hneg : ρ.re ≠ -1 / 2 := by
+      intro h
+      linarith
+    exact re_half_of_on_cardioid ρ hρ hneg μ hμ hc
+
 end Slopollary
 
+#print axioms Slopollary.mandelbrot_iff
 #print axioms Slopollary.mandelbrot_cardioid_slopollary
 #print axioms Slopollary.neutral_fixed_point_slopollary
 #print axioms Slopollary.re_half_of_on_cardioid
