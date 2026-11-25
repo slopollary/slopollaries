@@ -1,6 +1,6 @@
 # Slopollaries
 
-Small, original theorems proved off the back of big results, by [@slopollary](https://x.com/slopollary).
+Small, original theorems proved off the back of big results, by Maths Slop.
 
 Every slopollary ships with:
 
@@ -25,9 +25,9 @@ Paste any `.lean` file into [live.lean-lang.org](https://live.lean-lang.org) and
 
 ## Licence
 
-Free to use, share and build on, with credit to **@slopollary**.
+Free to use, share and build on, with credit to **Maths Slop**.
 
 - Lean code (`.lean`): [Apache License 2.0](LICENSE-APACHE), the same licence as Mathlib.
 - Papers, figures, post briefs and everything else: [CC BY 4.0](LICENSE-CC-BY).
 
-Suggested credit: "Slopollary N, @slopollary, github.com/slopollary/slopollaries".
+Suggested credit: "Slopollary N, Maths Slop, github.com/slopollary/slopollaries".
