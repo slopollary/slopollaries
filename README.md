@@ -17,6 +17,7 @@ On novelty: we search for each statement before posting and publish only when we
 | # | Date | Statement | Files |
 |---|------|-----------|-------|
 | 1 | 25 Nov 2026 | For every nontrivial zero ρ of ζ, the square ρ² lies on the parabola with focus 0 and directrix Re = ½, and Im(ρ²) = Im(ρ). | [paper](01-parabola/slopollary1.pdf) · [Lean](01-parabola/Slopollary1.lean) · [TeX](01-parabola/slopollary1.tex) · [post brief](01-parabola/POST.md) |
+| 2 | 25 Nov 2026 | For every nontrivial zero ρ of ζ, the point c = (1 − 1/ρ²)/4 lies on the boundary of the Mandelbrot set's main cardioid; equivalently z² + c has a neutral fixed point. | [paper](02-mandelbrot/slopollary2.pdf) · [Lean](02-mandelbrot/Slopollary2.lean) · [TeX](02-mandelbrot/slopollary2.tex) · [post brief](02-mandelbrot/POST.md) |
 
 ## Checking a proof yourself
 
